@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import logo from "@/assets/logo.png";
 
 const links = [
   { href: "#solucoes", label: "Soluções" },
@@ -30,9 +31,21 @@ export function Header() {
       )}
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-10 h-16 flex items-center justify-between">
-        <a href="#top" className="text-lg tracking-tight text-primary">
-          <span className="font-extrabold">Jus</span>
-          <span className="font-light"> Automação</span>
+        <a
+          href="#top"
+          className="flex items-center gap-2.5 text-lg tracking-tight text-primary"
+        >
+          <img
+            src={logo}
+            alt="Jus Automação"
+            width={36}
+            height={36}
+            className="h-9 w-9 object-contain"
+          />
+          <span>
+            <span className="font-extrabold">Jus</span>
+            <span className="font-light"> Automação</span>
+          </span>
         </a>
 
         <nav className="hidden md:flex items-center gap-9">
