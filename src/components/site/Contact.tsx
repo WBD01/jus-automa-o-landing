@@ -18,19 +18,24 @@ export function Contact() {
         .value,
     };
 
-    // TODO: Integrar com webhook posteriormente.
-    // Exemplo de integração:
-    // await fetch("https://SEU_WEBHOOK_AQUI", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(data),
-    // });
-    console.log("[Jus Automação] Lead capturado:", data);
-
-    await new Promise((r) => setTimeout(r, 700));
-    setLoading(false);
-    setSubmitted(true);
-    form.reset();
+    try {
+      await fetch("https://n8n.jusautomacao.cloud/webhook/Jusautomacao", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...data,
+          source: "landing-page",
+          submittedAt: new Date().toISOString(),
+        }),
+      });
+      setSubmitted(true);
+      form.reset();
+    } catch (err) {
+      console.error("[Jus Automação] Erro ao enviar lead:", err);
+      alert("Não foi possível enviar agora. Tente novamente em instantes.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
