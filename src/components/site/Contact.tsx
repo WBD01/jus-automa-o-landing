@@ -19,7 +19,7 @@ export function Contact() {
     };
 
     try {
-      await fetch("https://n8n.jusautomacao.cloud/webhook/Jusautomacao", {
+      await fetch("https://n8n.jusautomacao.cloud/webhook-test/Jusautomacao", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
